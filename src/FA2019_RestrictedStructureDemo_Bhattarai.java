@@ -3,17 +3,13 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class FA2019_RestrictedStructureDemo_Bhattarai {
+    public static int counter = 0;
+    private static LQHashed_Bhattarai lqHashed_bhattarai = new LQHashed_Bhattarai(7);
+    private static Hashtable<Integer,Student_Bhattarai> mJavaHashTable = new Hashtable<Integer,Student_Bhattarai>();
+
     public static void main(String[] args){
-//        displayMainMenu();
-        int num;
-        boolean[] output = new boolean[8];
-//        System.out.println("Enter number");
-//        Scanner mScanner = new Scanner(System.in);
-//        if(output[mScanner.nextInt()]){
-//
-//        }
-        for (int i = 0; i < 9; i++) {
-            System.out.println("Output for i " + output[i]);
+        if (counter == 0){
+            displayMainMenu();
         }
     }
 
@@ -26,19 +22,27 @@ public class FA2019_RestrictedStructureDemo_Bhattarai {
         Scanner mainMenuScanner = new Scanner(System.in);
         switch (mainMenuScanner.nextInt()){
             case 1:
-//                LQHashed Structure
+//                LQHashed Structure Menu
                 displayLQHashedMenu();
                 break;
             case 2:
-////                Java Hashtable
+//                Java Hashtable Menu
                 displayHashTableMenu();
                 break;
             case 0:
+//                Perform exit
+                exitMain();
                 break;
             default:
+//                Validation check
                 System.out.println("Invalid input");
                 break;
         }
+        displayMainMenu();
+    }
+
+    public static void exitMain(){
+        System.exit(0);
     }
 
     public static void displayLQHashedMenu(){
@@ -61,7 +65,6 @@ public class FA2019_RestrictedStructureDemo_Bhattarai {
         System.out.println("6. Show All");
         System.out.println("0. Exit");
 
-        LQHashed_Bhattarai lqHashed_bhattarai = new LQHashed_Bhattarai(7);
 
         Scanner hashedDataScanner = new Scanner(System.in);
         switch (hashedDataScanner.nextInt()){
@@ -91,12 +94,13 @@ public class FA2019_RestrictedStructureDemo_Bhattarai {
                 break;
             case 0:
 //                exit
-                exit(lqHashed_bhattarai);
+                exitLQHashedMenu(lqHashed_bhattarai);
                 break;
             default:
                 System.out.println("Invalid input");
                 break;
         }
+        displayLQHashedMenu();
     }
 
     public static void insertStudent(LQHashed_Bhattarai lqHashed_bhattarai){
@@ -188,8 +192,9 @@ public class FA2019_RestrictedStructureDemo_Bhattarai {
         lqHashed_bhattarai.showAll();
     }
 
-    public static void exit(LQHashed_Bhattarai lqHashed_bhattarai){
+    public static void exitLQHashedMenu(LQHashed_Bhattarai lqHashed_bhattarai){
         lqHashed_bhattarai.writeToFile();
+        displayMainMenu();
     }
 
     public static void displayHashTableMenu(){
@@ -201,8 +206,6 @@ public class FA2019_RestrictedStructureDemo_Bhattarai {
         System.out.println("5. Delete");
         System.out.println("6. Show All");
         System.out.println("0. Exit");
-
-        Hashtable<Integer,Student_Bhattarai> mJavaHashTable = new Hashtable<Integer,Student_Bhattarai>();
 
         Scanner javaHashtableScanner = new Scanner(System.in);
         switch (javaHashtableScanner.nextInt()){
@@ -238,6 +241,7 @@ public class FA2019_RestrictedStructureDemo_Bhattarai {
                 System.out.println("Invalid input");
                 break;
         }
+        displayHashTableMenu();
     }
 
     public static void addStudentJavaHashtable(Hashtable<Integer,Student_Bhattarai> mJavaHashTable){
@@ -378,5 +382,6 @@ public class FA2019_RestrictedStructureDemo_Bhattarai {
         for (Integer mKeys: keys){
             mJavaHashTable.get(mKeys).toFile();
         }
+        displayMainMenu();
     }
 }
